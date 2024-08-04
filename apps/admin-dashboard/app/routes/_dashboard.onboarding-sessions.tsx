@@ -40,7 +40,7 @@ type OnboardingSessionsSearchParams = z.infer<
 
 export async function loader({ request }: LoaderFunctionArgs) {
   await ensureUserAuthenticated(request, {
-    allowAmbassador: true,
+    minimumRole: 'ambassador',
   });
 
   const url = new URL(request.url);
@@ -171,7 +171,7 @@ function OnboardingSessionsTable() {
     {
       displayName: 'Attendees',
       render: (session) => session.attendees,
-      size: null,
+      size: '800',
     },
     {
       displayName: 'Uploaded By',
